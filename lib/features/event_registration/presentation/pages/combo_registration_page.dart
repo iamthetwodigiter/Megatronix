@@ -179,7 +179,9 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
     ref.listen<EventRegistrationState>(
       eventsRegistrationNotifierProvider,
       (previous, current) {
-        if (current.eventRegistrations != null && current.error == null && context.mounted) {
+        if (current.eventRegistrations != null &&
+            current.error == null &&
+            context.mounted) {
           AppErrorHandler.handleError(
             context,
             'Success',
@@ -204,12 +206,16 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
     if (eventRegistrationState.isLoading) {
       return CustomScaffold(
         title: 'Combo Registration',
+        customLottie: true,
+        customOpacity: 0.5,
         child: Center(child: LoadingWidget()),
       );
     }
 
     return CustomScaffold(
       title: 'Combo Registration',
+      customLottie: true,
+      customOpacity: 0.5,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

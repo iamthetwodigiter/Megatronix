@@ -132,6 +132,7 @@ class _ContactPageState extends ConsumerState<ContactPage> {
 
     return CustomScaffold(
       title: 'Contact',
+      secondaryImage: 'assets/images/background/home.jpg',
       isMainPage: true,
       floatingActionButton: Container(
         margin: EdgeInsets.only(bottom: 50),

@@ -23,7 +23,8 @@ class _ComboDetailsPageState extends State<ComboDetailsPage> {
     final size = MediaQuery.sizeOf(context);
     return CustomScaffold(
       title: widget.combo.name,
-      secondaryImage: 'assets/images/background.png',
+      secondaryImage: 'assets/images/background/secondary.jpg',
+      customOpacity: 0.5,
       customLottie: true,
       child: SingleChildScrollView(
         child: ConstrainedBox(

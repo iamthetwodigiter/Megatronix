@@ -39,7 +39,7 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
       return CustomScaffold(
         title: widget.title,
         secondaryImage: 'assets/images/background.png',
-
+        customLottie: true,
         child: Center(
           child: const LoadingWidget(),
         ),
@@ -61,8 +61,8 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
         context.mounted) {
       return CustomScaffold(
         title: widget.title,
-            secondaryImage: 'assets/images/background.png',
-
+        secondaryImage: 'assets/images/background/secondary.jpg',
+        customLottie: true,
         child: Center(
           child: Column(
             children: [
@@ -70,14 +70,10 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
               Expanded(
                 child: ListView.builder(
                   itemCount: eventState.eventsList!.length +
-                      (eventState.combosList?.isNotEmpty == true
-                          ? 1
-                          : 0) + // For the header
-                      (eventState.combosList?.length ??
-                          0), // For the combo events
+                      (eventState.combosList?.isNotEmpty == true ? 1 : 0) +
+                      (eventState.combosList?.length ?? 0),
                   itemBuilder: (context, index) {
                     if (index == eventState.eventsList!.length) {
-                      // Header for combo events
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -114,8 +110,8 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
     // if (eventState.eventsList == null || eventState.eventsList!.isEmpty) {
     return CustomScaffold(
       title: widget.title,
-          secondaryImage: 'assets/images/background.png',
-
+      secondaryImage: 'assets/images/background/secondary.jpg',
+      customLottie: true,
       child: Center(
         child: Text(
           'NO ONGOING EVENTS...',

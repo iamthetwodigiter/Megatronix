@@ -23,7 +23,7 @@ class CustomScaffold extends StatefulWidget {
     this.floatingActionButtonLocation,
     this.secondaryImage,
     this.customLottie = false,
-    this.customOpacity = 1,
+    this.customOpacity = 0.8,
     this.isDisabled = false,
   });
 
@@ -134,14 +134,15 @@ class _CustomScaffoldState extends State<CustomScaffold>
                     ),
                   ))
               : Opacity(
-                opacity: 0.45,
-                child: Image.asset(
-                    widget.secondaryImage ?? 'assets/images/background/1.jpg',
+                  opacity: widget.customOpacity,
+                  child: Image.asset(
+                    widget.secondaryImage ??
+                        'assets/images/background/secondary.jpg',
                     height: size.height,
                     width: size.width,
                     fit: BoxFit.cover,
                   ),
-              ),
+                ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: widget.child,

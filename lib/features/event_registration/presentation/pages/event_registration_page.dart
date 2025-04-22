@@ -177,6 +177,8 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
     if (eventRegistrationState.isLoading) {
       return CustomScaffold(
         title: 'Team Registration',
+        customLottie: true,
+        customOpacity: 0.5,
         child: Center(
           child: LoadingWidget(),
         ),
@@ -184,6 +186,8 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
     }
     return CustomScaffold(
       title: 'Team Registration',
+      customLottie: true,
+      customOpacity: 0.5,
       child: SingleChildScrollView(
         child: Column(
           children: [

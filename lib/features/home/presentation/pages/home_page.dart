@@ -74,9 +74,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     String timerText = _formatDuration(_remainingTime);
 
     return CustomScaffold(
-      title: 'Welcome to',
+      title: '',
       customLottie: true,
-      secondaryImage: 'assets/images/background/2.jpg',
+      secondaryImage: 'assets/images/background/home.jpg',
       isMainPage: true,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

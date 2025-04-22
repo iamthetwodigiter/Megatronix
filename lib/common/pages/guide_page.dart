@@ -14,6 +14,7 @@ class _GuidePageState extends State<GuidePage> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       title: 'Guide',
+      customOpacity: 0.5,
       isMainPage: true,
       child: Column(
         children: [
