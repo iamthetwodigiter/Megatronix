@@ -51,7 +51,7 @@ The application implements **Clean Architecture** with clear separation of conce
 ```
 lib/
 ├── common/
-│   ├── pages/               # Shared pages (splash, error screens)
+│   ├── pages/               # Shared pages (splash, error screens, onboarding)
 │   ├── services/            # Cross-feature services
 │   └── widgets/             # Reusable UI components
 ├── config/                  # Environment configuration
@@ -64,6 +64,7 @@ lib/
 │   ├── event_registration/  # Event signup & management
 │   ├── events/              # Event discovery & details
 │   ├── gallery/             # Media galleries
+│   ├── guide/               # Detailed registration flow guidance
 │   ├── home/                # Main dashboard & navigation
 │   ├── main_registration/   # Member registration
 │   ├── profile/             # User profile management
@@ -93,6 +94,13 @@ feature/
 ```
 
 ## 🔑 Key Features
+
+### User Experience
+- **Onboarding Experience**
+  - First-time user introduction
+  - Animation preference settings
+  - Performance optimization controls
+  - Personalized initial setup
 
 ### Cross-Platform Support
 - **Responsive Design**
@@ -137,6 +145,11 @@ feature/
   - Feedback submission
   - Announcement notifications
 
+### User Guidance
+- **Registration Guide**
+  - Step-by-step registration flow
+  - Prerequisites explanation
+
 ## 🛠️ Technical Implementation
 
 ### State Management & Dependency Injection
@@ -159,6 +172,15 @@ final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref
 });
 ```
 
+### Performance Optimizations
+
+- **Lazy Loading**: On-demand resource loading to minimize initial load time
+- **Image Optimization**: Progressive loading and caching of images
+- **Memory Management**: Proper disposal of resources to prevent memory leaks
+- **State Management**: Efficient UI updates with minimal rebuilds
+- **Network Optimization**: Request batching and response caching
+- **Animation Toggle**: User-configurable background animations for devices with limited resources
+
 ### Technical Stack
 
 | Category | Technologies |
@@ -168,9 +190,9 @@ final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref
 | **Platforms** | Android, iOS, Web |
 | **State Management** | Riverpod |
 | **Networking** | HTTP package, RESTful API integration |
-| **Storage** | Secure Storage, IndexedDB (web) |
+| **Storage** | Secure Storage, IndexedDB (web), SharedPreferences |
 | **Media** | Cached Network Image |
-| **UI Enhancement** | Lottie Animations |
+| **UI Enhancement** | Lottie Animations (with toggle option) |
 | **Notifications** | OneSignal, Web Push API |
 | **Analytics** | Firebase Analytics (planned) |
 | **Testing** | Unit Tests, Widget Tests, Integration Tests |
@@ -179,7 +201,6 @@ final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref
 ### Web Implementation
 - **Responsive layouts** using Flutter's adaptive widgets and custom breakpoints
 - **Browser compatibility** across Chrome, Firefox, Safari, and Edge
-- **Web-specific optimizations** for rendering performance and bundle size
 
 ### Design Patterns
 
@@ -249,14 +270,6 @@ Each error scenario includes appropriate UI feedback, logging for debugging, and
 - **Proactive Error Handling**: Prevention of information leakage through errors
 - **Code Obfuscation**: Application hardening for release builds
 
-### Performance Optimizations
-
-- **Lazy Loading**: On-demand resource loading to minimize initial load time
-- **Image Optimization**: Progressive loading and caching of images
-- **Memory Management**: Proper disposal of resources to prevent memory leaks
-- **State Management**: Efficient UI updates with minimal rebuilds
-- **Network Optimization**: Request batching and response caching
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -315,9 +328,10 @@ class Config {
 - **Phase 2**: Enhanced event management and registration system ✅
 - **Phase 3**: Team collaboration features and media galleries ✅
 - **Phase 4**: Web platform support and responsive design ✅
-- **Phase 5**: Analytics integration and performance optimization 🔄
-- **Phase 6**: Payment gateway integration and e-commerce features 🔄
-- **Phase 7**: Advanced web features (offline support, push notifications) 🔄
+- **Phase 5**: Onboarding experience and user guidance system ✅
+- **Phase 6**: Analytics integration and performance optimization 🔄
+- **Phase 7**: Payment gateway integration and e-commerce features 🔄
+- **Phase 8**: Advanced web features (offline support, push notifications) 🔄
 
 ## 🧪 Testing Strategy
 
