@@ -22,7 +22,7 @@ class _EventsHomePageState extends State<EventsHomePage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: 'Megatronix Events',
+      title: 'Events',
       isMainPage: true,
       child: Center(
         child: Column(

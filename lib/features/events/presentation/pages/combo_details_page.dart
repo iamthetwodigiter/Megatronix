@@ -24,6 +24,7 @@ class _ComboDetailsPageState extends State<ComboDetailsPage> {
     return CustomScaffold(
       title: widget.combo.name,
       secondaryImage: 'assets/images/background.png',
+      customLottie: true,
       child: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(

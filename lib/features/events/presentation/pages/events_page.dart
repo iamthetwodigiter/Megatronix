@@ -43,14 +43,14 @@ class _EventsPageState extends ConsumerState<EventsPage> {
 
     if (state.isLoading) {
       return CustomScaffold(
-        title: 'Events',
+        title: 'Domains',
         child: Center(
           child: LoadingWidget(),
         ),
       );
     }
     return CustomScaffold(
-      title: 'Events',
+      title: 'Domains',
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: GestureDetector(
         onTap: () {

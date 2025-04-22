@@ -41,8 +41,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     final size = MediaQuery.sizeOf(context);
     return CustomScaffold(
       title: widget.event.name,
-           secondaryImage: 'assets/images/background.png',
-
+      secondaryImage: 'assets/images/background.png',
+      customLottie: true,
       child: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -130,7 +130,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 minPlayers: widget.event.minPlayers.toInt(),
                 maxPlayers: widget.event.maxPlayers.toInt(),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 40),
             ],
           ),
         ),

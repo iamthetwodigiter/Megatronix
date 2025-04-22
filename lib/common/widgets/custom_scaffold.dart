@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:lottie/lottie.dart';
+import 'package:megatronix/common/pages/settings_page.dart';
 import 'package:megatronix/features/profile/presentation/pages/user_profile_page.dart';
 
 class CustomScaffold extends StatefulWidget {
@@ -8,6 +11,7 @@ class CustomScaffold extends StatefulWidget {
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final String? secondaryImage;
+  final bool? customLottie;
   final double customOpacity;
   final bool isDisabled;
   const CustomScaffold({
@@ -18,6 +22,7 @@ class CustomScaffold extends StatefulWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.secondaryImage,
+    this.customLottie = false,
     this.customOpacity = 1,
     this.isDisabled = false,
   });
@@ -30,7 +35,7 @@ class _CustomScaffoldState extends State<CustomScaffold>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-
+  final Box _preferences = Hive.box('preferences');
   @override
   void initState() {
     super.initState();
@@ -51,6 +56,8 @@ class _CustomScaffoldState extends State<CustomScaffold>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final bool enableAnimation =
+        _preferences.get('enableAnimation', defaultValue: true) ?? true;
     return Scaffold(
       appBar: AppBar(
         excludeHeaderSemantics: true,
@@ -66,6 +73,23 @@ class _CustomScaffoldState extends State<CustomScaffold>
           ),
         ),
         centerTitle: true,
+        leading: widget.isMainPage
+            ? Align(
+                alignment: Alignment.bottomCenter,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SettingsPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.settings,
+                  ),
+                ),
+              )
+            : null,
         actions: [
           Align(
             alignment: Alignment.bottomCenter,
@@ -93,15 +117,31 @@ class _CustomScaffoldState extends State<CustomScaffold>
       ),
       body: Stack(
         children: [
-          Opacity(
-            opacity: widget.customOpacity,
-            child: Image.asset(
-              widget.secondaryImage ?? 'assets/images/background.png',
-              height: size.height,
-              width: size.width,
-              fit: BoxFit.cover,
-            ),
-          ),
+          enableAnimation
+              ? Opacity(
+                  opacity: widget.customOpacity,
+                  child: RotatedBox(
+                    quarterTurns: -1,
+                    child: LottieBuilder.asset(
+                      (widget.customLottie != null &&
+                              widget.customLottie == true)
+                          ? 'assets/animations/stars.json'
+                          : 'assets/animations/background.json',
+                      height: size.width,
+                      width: size.height,
+                      frameRate: FrameRate(60),
+                      fit: BoxFit.cover,
+                    ),
+                  ))
+              : Opacity(
+                opacity: 0.45,
+                child: Image.asset(
+                    widget.secondaryImage ?? 'assets/images/background/1.jpg',
+                    height: size.height,
+                    width: size.width,
+                    fit: BoxFit.cover,
+                  ),
+              ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: widget.child,

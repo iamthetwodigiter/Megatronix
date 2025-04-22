@@ -75,7 +75,8 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return CustomScaffold(
       title: 'Welcome to',
-      secondaryImage: 'assets/images/background.png',
+      customLottie: true,
+      secondaryImage: 'assets/images/background/2.jpg',
       isMainPage: true,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
