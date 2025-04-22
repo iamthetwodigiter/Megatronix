@@ -77,6 +77,15 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
     }
   }
 
+  void _removeGidField(EventsEntity event, int index) {
+    if (_eventGidControllers[event.id]!.length > event.minPlayers) {
+      setState(() {
+        _eventGidControllers[event.id]![index].dispose();
+        _eventGidControllers[event.id]!.removeAt(index);
+      });
+    }
+  }
+
   void _addContactField() {
     int maxAllowedPlayers = widget.combo.events
         .map((e) => e.maxPlayers)
@@ -87,6 +96,21 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
       setState(() {
         _nameControllers.add(TextEditingController());
         _contactControllers.add(TextEditingController());
+      });
+    }
+  }
+
+  void _removeContactField(int index) {
+    if (_nameControllers.length >
+        widget.combo.events
+            .map((e) => e.minPlayers)
+            .reduce((a, b) => a > b ? a : b)
+            .toInt()) {
+      setState(() {
+        _nameControllers[index].dispose();
+        _contactControllers[index].dispose();
+        _nameControllers.removeAt(index);
+        _contactControllers.removeAt(index);
       });
     }
   }
@@ -206,6 +230,7 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
     if (eventRegistrationState.isLoading) {
       return CustomScaffold(
         title: 'Combo Registration',
+        secondaryImage: 'assets/images/background/home.jpg',
         customLottie: true,
         customOpacity: 0.5,
         child: Center(child: LoadingWidget()),
@@ -215,6 +240,7 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
     return CustomScaffold(
       title: 'Combo Registration',
       customLottie: true,
+      secondaryImage: 'assets/images/background/home.jpg',
       customOpacity: 0.5,
       child: SingleChildScrollView(
         child: Column(
@@ -251,10 +277,24 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
                     (entry) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: CustomTextField(
-                          hintText: 'Enter GID ${entry.key + 1}',
-                          prefixIcon: Icons.vpn_key,
-                          controller: entry.value,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomTextField(
+                                hintText: 'Enter GID ${entry.key + 1}',
+                                prefixIcon: Icons.vpn_key,
+                                controller: entry.value,
+                              ),
+                            ),
+                            if (_eventGidControllers[event.id]!.length >
+                                event.minPlayers)
+                              IconButton(
+                                onPressed: () =>
+                                    _removeGidField(event, entry.key),
+                                icon: const Icon(Icons.remove_circle,
+                                    color: Colors.red, size: 30),
+                              ),
+                          ],
                         ),
                       );
                     },
@@ -292,10 +332,26 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
               int index = entry.key;
               return Column(
                 children: [
-                  CustomTextField(
-                    hintText: 'Enter Name ${index + 1}',
-                    prefixIcon: Icons.person,
-                    controller: entry.value,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          hintText: 'Enter Name ${index + 1}',
+                          prefixIcon: Icons.person,
+                          controller: entry.value,
+                        ),
+                      ),
+                      if (_nameControllers.length >
+                          widget.combo.events
+                              .map((e) => e.minPlayers)
+                              .reduce((a, b) => a > b ? a : b)
+                              .toInt())
+                        IconButton(
+                          onPressed: () => _removeContactField(index),
+                          icon: const Icon(Icons.remove_circle,
+                              color: Colors.red, size: 30),
+                        ),
+                    ],
                   ),
                   const SizedBox(height: 10),
                   CustomTextField(

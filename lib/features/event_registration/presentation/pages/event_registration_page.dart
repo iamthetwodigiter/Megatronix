@@ -80,6 +80,26 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
     }
   }
 
+  void _removeGidField(int index) {
+    if (_gidControllers.length > 1) {
+      setState(() {
+        _gidControllers[index].dispose();
+        _gidControllers.removeAt(index);
+      });
+    }
+  }
+
+  void _removeContactField(int index) {
+    if (_nameControllers.length > 1) {
+      setState(() {
+        _nameControllers[index].dispose();
+        _contactControllers[index].dispose();
+        _nameControllers.removeAt(index);
+        _contactControllers.removeAt(index);
+      });
+    }
+  }
+
   void _submitRegistration() {
     List<Map<String, dynamic>> contactList = [];
     List<String> gids = _gidControllers.map((c) => c.text.trim()).toList();
@@ -139,7 +159,6 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
           gids,
           contactList,
         );
-    Navigator.pop(context);
   }
 
   @override
@@ -148,19 +167,21 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
         ref.watch(eventsRegistrationNotifierProvider);
     ref.listen<EventRegistrationState>(eventsRegistrationNotifierProvider,
         (previous, current) {
+      if (!context.mounted) return;
       if (current.isLoading) return;
-      if (current.eventRegistrations != null &&
-          current.error == null &&
-          context.mounted) {
+
+      if (current.eventRegistrations != null && current.error == null) {
         AppErrorHandler.handleError(
           context,
           'Hurrah',
           'Event registration successful',
           type: ToastificationType.success,
         );
+        Navigator.pop(context);
         return;
       }
-      if (current.error != null && context.mounted) {
+
+      if (current.error != null) {
         AppErrorHandler.handleError(
           context,
           'Error',
@@ -177,6 +198,7 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
     if (eventRegistrationState.isLoading) {
       return CustomScaffold(
         title: 'Team Registration',
+        secondaryImage: 'assets/images/background/home.jpg',
         customLottie: true,
         customOpacity: 0.5,
         child: Center(
@@ -186,6 +208,7 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
     }
     return CustomScaffold(
       title: 'Team Registration',
+      secondaryImage: 'assets/images/background/home.jpg',
       customLottie: true,
       customOpacity: 0.5,
       child: SingleChildScrollView(
@@ -202,10 +225,22 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
               int index = entry.key;
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: CustomTextField(
-                  hintText: 'Enter GID ${index + 1}',
-                  prefixIcon: Icons.vpn_key,
-                  controller: entry.value,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextField(
+                        hintText: 'Enter GID ${index + 1}',
+                        prefixIcon: Icons.vpn_key,
+                        controller: entry.value,
+                      ),
+                    ),
+                    if (_gidControllers.length > 1)
+                      IconButton(
+                        onPressed: () => _removeGidField(index),
+                        icon: const Icon(Icons.remove_circle,
+                            color: Colors.red, size: 30),
+                      ),
+                  ],
                 ),
               );
             }),
@@ -225,13 +260,25 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
               int index = entry.key;
               return Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: CustomTextField(
-                      hintText: 'Enter Name ${index + 1}',
-                      prefixIcon: Icons.person,
-                      controller: entry.value,
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: CustomTextField(
+                            hintText: 'Enter Name ${index + 1}',
+                            prefixIcon: Icons.person,
+                            controller: entry.value,
+                          ),
+                        ),
+                      ),
+                      if (_nameControllers.length > 1)
+                        IconButton(
+                          onPressed: () => _removeContactField(index),
+                          icon: const Icon(Icons.remove_circle,
+                              color: Colors.red, size: 30),
+                        ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
