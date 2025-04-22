@@ -73,8 +73,8 @@ class _DomainEventsCardsState extends State<DomainEventsCards> {
           height: cardHeight,
           width: cardWidth,
           margin: EdgeInsets.symmetric(
-            vertical: isSmallScreen ? 10 : 15,
-            horizontal: isSmallScreen ? 8 : 12,
+            vertical: isSmallScreen ? 0 : 15,
+            horizontal: isSmallScreen ? 0 : 12,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(isSmallScreen ? 20 : 25),
@@ -116,7 +116,7 @@ class _DomainEventsCardsState extends State<DomainEventsCards> {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: EdgeInsets.only(
-                      bottom: isSmallScreen ? 15 : 20,
+                      bottom: isSmallScreen ? 5 : 20,
                     ).copyWith(
                       left: isSmallScreen ? 10 : 15,
                       right: isSmallScreen ? 10 : 15,

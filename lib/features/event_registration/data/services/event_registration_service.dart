@@ -27,7 +27,6 @@ class EventRegistrationService {
       },
     );
     final decodedBody = jsonDecode(response.body);
-    print(decodedBody);
     if (response.statusCode == 201) {
       return decodedBody;
     } else if (response.statusCode == 400) {
@@ -106,7 +105,6 @@ class EventRegistrationService {
       },
     );
     final decodedBody = jsonDecode(response.body);
-    print(decodedBody);
     if (response.statusCode == 200) {
       return List<Map<String, dynamic>>.from(decodedBody);
     } else if (response.statusCode == 400) {
