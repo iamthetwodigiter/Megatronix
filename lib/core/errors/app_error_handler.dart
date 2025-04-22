@@ -11,7 +11,7 @@ class AppErrorHandler {
       description = "Please check your internet connection and try again.";
     } else if (description.contains('Invalid Token') ||
         description.contains('No token')) {
-      title = "Session Expired";
+      title = "Login Required";
       description = "Please login to continue.";
     } else if (description.contains("Timeout")) {
       title = "Timeout Error";
