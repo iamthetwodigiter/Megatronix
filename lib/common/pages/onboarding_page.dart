@@ -40,7 +40,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       background: [
         LottieBuilder.asset('assets/animations/hello.json'),
         LottieBuilder.asset('assets/animations/confused.json'),
-        LottieBuilder.asset('assets/animations/confused.json'),
+        SizedBox()
       ],
       totalPage: 3,
       speed: 1.8,
@@ -113,56 +113,72 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 70),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 250,
-              ),
-              Text(
-                'How to pariticipate in Paridhi 2025?',
-                style: TextStyle(fontSize: 18),
-                textAlign: TextAlign.center,
-              ),
-              ListTile(
-                title: const Text('Main Registration'),
-                subtitle: const Text(
-                  'Navigate to Events > Paridhi > Main Registration to complete Paridhi 2025 registration to be able to participate in events.',
-                  style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+          height: size.height,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          margin: EdgeInsets.only(bottom: 80),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                LottieBuilder.asset(
+                  'assets/animations/confused.json',
+                  height: size.height * 0.3,
                 ),
-                leading: Text(
-                  '1. ',
-                  style: TextStyle(fontSize: 18),
+                SizedBox(
+                  height: size.height * 0.42,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          'How to pariticipate in Paridhi 2025?',
+                          style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center,
+                        ),
+                        ListTile(
+                          title: const Text('Main Registration'),
+                          subtitle: const Text(
+                            'Navigate to Events > Paridhi > Main Registration to complete Paridhi 2025 registration to be able to participate in events.',
+                            style:
+                                TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                          ),
+                          leading: Text(
+                            '1. ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Event Registration'),
+                          subtitle: const Text(
+                            'Navigate to Events > Paridhi > Domain > Events > Event Registration to register for events.',
+                            style:
+                                TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                          ),
+                          leading: Text(
+                            '2. ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Combo Event Registration'),
+                          subtitle: const Text(
+                            'Navigate to Events > Paridhi > Domain > Combo Events > Combo Events Registration to register your team for combo events.',
+                            style:
+                                TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                          ),
+                          leading: Text(
+                            '3. ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              ListTile(
-                title: const Text('Event Registration'),
-                subtitle: const Text(
-                  'Navigate to Events > Paridhi > Domain > Events > Event Registration to register for events.',
-                  style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                Text(
+                  '[Tip]: You can always find the guide in the help section of the app.',
+                  style: TextStyle(fontSize: 12),
                 ),
-                leading: Text(
-                  '2. ',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              ListTile(
-                title: const Text('Combo Event Registration'),
-                subtitle: const Text(
-                  'Navigate to Events > Paridhi > Domain > Combo Events > Combo Events Registration to register your team for combo events.',
-                  style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
-                ),
-                leading: Text(
-                  '3. ',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              Text(
-                '[Tip]: You can always find the guide in the help section of the app.',
-                style: TextStyle(fontSize: 12),
-              ),
-              
-            ],
+              ],
+            ),
           ),
         ),
       ],
