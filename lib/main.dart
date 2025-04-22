@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:megatronix/common/pages/splash_screen.dart';
 import 'package:megatronix/common/pages/web/landing_web_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -10,6 +11,11 @@ import 'package:megatronix/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialize Hive Flutter
+  await Hive.initFlutter();
+  if (!Hive.isBoxOpen('preferences')) {
+    await Hive.openBox('preferences');
+  }
 
   // Initialize OneSignal
   OneSignal.initialize(Config.oneSignalAppID);
@@ -32,6 +38,22 @@ class Megatronix extends ConsumerStatefulWidget {
 }
 
 class _ParidhiState extends ConsumerState<Megatronix> {
+  @override
+  void initState() {
+    super.initState();
+
+    Box preferences = Hive.box('preferences');
+
+    if (!preferences.keys.contains('enableAnimation')) {
+      preferences.put('enableAnimation', true);
+    }
+    if (!preferences.keys.contains('firstTime')) {
+      preferences.put('firstTime', true);
+    } else if(preferences.get('firstTime') == true) {
+      preferences.put('firstTime', false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
