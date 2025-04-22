@@ -67,6 +67,7 @@ class _MainRegistrationPageState extends ConsumerState<MainRegistrationPage> {
     if (authState.isLoading || mainRegistrationState.isLoading) {
       return CustomScaffold(
         title: 'Main Registration',
+        secondaryImage: 'assets/images/background/home.jpg',
         child: Center(
           child: LoadingWidget(),
         ),
@@ -76,6 +77,7 @@ class _MainRegistrationPageState extends ConsumerState<MainRegistrationPage> {
     if (authState.user == null) {
       return CustomScaffold(
         title: 'Main Registration',
+        secondaryImage: 'assets/images/background/home.jpg',
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -111,6 +113,7 @@ class _MainRegistrationPageState extends ConsumerState<MainRegistrationPage> {
     if (authState.user != null) {
       return CustomScaffold(
         title: 'Main Registration',
+        secondaryImage: 'assets/images/background/home.jpg',
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -153,6 +156,7 @@ class _MainRegistrationPageState extends ConsumerState<MainRegistrationPage> {
 
     return CustomScaffold(
       title: 'Main Registration',
+      secondaryImage: 'assets/images/background/home.jpg',
       child: Center(
         child: LoadingWidget(),
       ),

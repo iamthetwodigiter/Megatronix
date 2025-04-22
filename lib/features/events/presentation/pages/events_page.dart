@@ -44,6 +44,7 @@ class _EventsPageState extends ConsumerState<EventsPage> {
     if (state.isLoading) {
       return CustomScaffold(
         title: 'Domains',
+        secondaryImage: 'assets/images/background/home.jpg',
         customLottie: true,
         child: Center(
           child: LoadingWidget(),
@@ -52,6 +53,7 @@ class _EventsPageState extends ConsumerState<EventsPage> {
     }
     return CustomScaffold(
       title: 'Domains',
+      secondaryImage: 'assets/images/background/home.jpg',
       customLottie: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: GestureDetector(

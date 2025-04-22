@@ -41,7 +41,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     final size = MediaQuery.sizeOf(context);
     return CustomScaffold(
       title: widget.event.name,
-      secondaryImage: 'assets/images/background/secondary.jpg',
+      secondaryImage: 'assets/images/background/home.jpg',
       customOpacity: 0.5,
       customLottie: true,
       child: Center(

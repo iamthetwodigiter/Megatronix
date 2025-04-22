@@ -204,28 +204,30 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
     final authState = ref.watch(authNotifierProvider);
 
     if (authState.isLoading) {
-      return Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              RotatedBox(
-                quarterTurns: -1,
-                child: Opacity(
-                  opacity: 0.6,
-                  child: LottieBuilder.asset(
-                    'assets/animations/background.json',
-                    height: size.width,
-                    width: size.height,
-                    frameRate: FrameRate(30),
-                    fit: BoxFit.cover,
-                  ),
+      return CustomScaffold(
+        title: 'SignUp',
+        secondaryImage: 'assets/images/background/home.jpg',
+        customOpacity: 0.6,
+        isDisabled: true,
+        child: Stack(
+          children: [
+            RotatedBox(
+              quarterTurns: -1,
+              child: Opacity(
+                opacity: 0.6,
+                child: LottieBuilder.asset(
+                  'assets/animations/background.json',
+                  height: size.width,
+                  width: size.height,
+                  frameRate: FrameRate(30),
+                  fit: BoxFit.cover,
                 ),
               ),
-              Center(
-                child: LoadingWidget(),
-              ),
-            ],
-          ),
+            ),
+            Center(
+              child: LoadingWidget(),
+            ),
+          ],
         ),
       );
     }
@@ -265,6 +267,7 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
     return CustomScaffold(
       title: 'Verify Email',
       customOpacity: 0.6,
+      secondaryImage: 'assets/images/background/home.jpg',
       isDisabled: true,
       child: SingleChildScrollView(
         child: Column(

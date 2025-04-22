@@ -109,6 +109,8 @@ class _LogInPageState extends ConsumerState<LogInPage> {
     return CustomScaffold(
       title: 'Login',
       isDisabled: true,
+      
+      secondaryImage: 'assets/images/background/home.jpg',
       customOpacity: 0.6,
       child: SafeArea(
         child: SingleChildScrollView(

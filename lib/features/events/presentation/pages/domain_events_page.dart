@@ -38,7 +38,7 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
     if (eventState.isLoading) {
       return CustomScaffold(
         title: widget.title,
-        secondaryImage: 'assets/images/background.png',
+        secondaryImage: 'assets/images/background/home.jpg',
         customLottie: true,
         child: Center(
           child: const LoadingWidget(),
@@ -61,7 +61,7 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
         context.mounted) {
       return CustomScaffold(
         title: widget.title,
-        secondaryImage: 'assets/images/background/secondary.jpg',
+        secondaryImage: 'assets/images/background/home.jpg',
         customLottie: true,
         child: Center(
           child: Column(
@@ -110,7 +110,7 @@ class _DomainEventsPageState extends ConsumerState<DomainEventsPage> {
     // if (eventState.eventsList == null || eventState.eventsList!.isEmpty) {
     return CustomScaffold(
       title: widget.title,
-      secondaryImage: 'assets/images/background/secondary.jpg',
+      secondaryImage: 'assets/images/background/home.jpg',
       customLottie: true,
       child: Center(
         child: Text(

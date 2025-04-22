@@ -162,6 +162,7 @@ class _PasswordResetPageState extends ConsumerState<PasswordResetPage> {
 
     return CustomScaffold(
       title: 'Password Reset',
+      secondaryImage: 'assets/images/background/home.jpg',
       isDisabled: true,
       child: SafeArea(
         child: Stack(
