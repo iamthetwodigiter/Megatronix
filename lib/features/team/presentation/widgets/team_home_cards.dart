@@ -52,14 +52,14 @@ class _TeamHomeCardsState extends State<TeamHomeCards> {
         width: widget.isWebPage ? widget.width ?? size.width * 0.3 : size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          gradient: LinearGradient(
-            colors: [
-              Colors.black.withAlpha(100),
-              Colors.black.withAlpha(200),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppTheme.blackBackground.withAlpha(150),
+              blurRadius: 0,
+              spreadRadius: 0,
+              offset: Offset.zero,
+            ),
+          ],
         ),
         child: Stack(
           alignment: Alignment.bottomRight,
@@ -74,6 +74,19 @@ class _TeamHomeCardsState extends State<TeamHomeCards> {
                 width: widget.isWebPage
                     ? widget.width ?? size.width * 0.3
                     : size.width,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    AppTheme.transparentColor,
+                    AppTheme.blackBackground.withAlpha(175),
+                  ],
+                ),
               ),
             ),
             Padding(
