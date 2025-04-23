@@ -1,7 +1,7 @@
 import 'package:megatronix/features/event_registration/domain/entities/combo_registration_details.dart';
 import 'package:megatronix/features/event_registration/domain/entities/event_registration_details_entity.dart';
 
-abstract class EventRegistrationRepository {
+abstract interface class EventRegistrationRepository {
   Future<EventRegistrationDetailsEntity> registerTeam(
       int eventID,
       String teamName,

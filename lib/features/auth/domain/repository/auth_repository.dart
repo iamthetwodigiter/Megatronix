@@ -1,6 +1,6 @@
 import 'package:megatronix/features/auth/domain/entities/user_entity.dart';
 
-abstract class AuthRepository {
+abstract interface class AuthRepository {
   Future<UserEntity> registerUser(String name, String email, String password);
   Future<UserEntity> loginUser(String email, String password);
   Future<UserEntity> checkAuthStatus();
