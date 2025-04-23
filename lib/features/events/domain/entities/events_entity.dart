@@ -12,7 +12,7 @@ class EventsEntity {
   final num minPlayers;
   final num maxPlayers;
   final num registrationFee;
-  final num prizePool;
+  final num? prizePool;
   final String createdAt;
   final String updatedAt;
   final String createdByUserName;
@@ -78,7 +78,7 @@ class EventsEntity {
       minPlayers: map['minPlayers'] as num,
       maxPlayers: map['maxPlayers'] as num,
       registrationFee: map['registrationFee'] as num,
-      prizePool: map['prizePool'] as num,
+      prizePool: map['prizePool'] != null ? map['prizePool'] as num : null,
       createdAt: map['createdAt'] as String,
       updatedAt: map['updatedAt'] as String,
       createdByUserName: map['createdByUserName'] as String,

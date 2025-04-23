@@ -112,10 +112,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 title: 'Registration Fees',
                 subtitle: '₹${widget.event.registrationFee}',
               ),
-              CustomRichtext(
-                title: 'Prize Pool',
-                subtitle: '₹${widget.event.prizePool}',
-              ),
+              if (widget.event.prizePool != null)
+                CustomRichtext(
+                  title: 'Prize Pool',
+                  subtitle: '₹${widget.event.prizePool}',
+                ),
               SizedBox(height: 15),
               Align(
                 alignment: Alignment.center,
