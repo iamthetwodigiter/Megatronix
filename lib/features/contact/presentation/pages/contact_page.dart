@@ -4,13 +4,11 @@ import 'package:lottie/lottie.dart';
 import 'package:megatronix/common/widgets/custom_scaffold.dart';
 import 'package:megatronix/common/widgets/custom_button.dart';
 import 'package:megatronix/common/widgets/custom_textfield.dart';
+import 'package:megatronix/common/widgets/social_button.dart';
 import 'package:megatronix/core/errors/app_error_handler.dart';
 import 'package:megatronix/features/contact/presentation/notifier/contact_notifier.dart';
 import 'package:megatronix/features/contact/provider/contact_provider.dart';
-import 'package:megatronix/theme/app_theme.dart';
-import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:toastification/toastification.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends ConsumerStatefulWidget {
   const ContactPage({super.key});
@@ -41,18 +39,6 @@ class _ContactPageState extends ConsumerState<ContactPage> {
     _contactController.dispose();
     _queryController.dispose();
     super.dispose();
-  }
-
-  void _openUrl(String url, String platform) async {
-    try {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    } catch (e) {
-      AppErrorHandler.handleError(
-        context,
-        'Error',
-        'Cannot launch $platform',
-      );
-    }
   }
 
   void _createQuery() {
@@ -134,58 +120,6 @@ class _ContactPageState extends ConsumerState<ContactPage> {
       title: 'Contact',
       secondaryImage: 'assets/images/background/home.jpg',
       isMainPage: true,
-      floatingActionButton: Container(
-        margin: EdgeInsets.only(bottom: 50),
-        child: SpeedDial(
-          closedForegroundColor: AppTheme.primaryBlueAccentColor,
-          openForegroundColor: AppTheme.primaryBlueAccentColor,
-          closedBackgroundColor: AppTheme.primaryBlueAccentColor,
-          openBackgroundColor: AppTheme.primaryBlueAccentColor,
-          labelsBackgroundColor: AppTheme.primaryBlueAccentColor,
-          speedDialChildren: [
-            SpeedDialChild(
-              child: Image.asset('assets/images/socials/facebook.png'),
-              foregroundColor: AppTheme.darkBackground,
-              backgroundColor: AppTheme.darkBackground,
-              onPressed: () {
-                _openUrl(
-                  'https://www.facebook.com/share/g/1D4bRRtVtx/',
-                  'Facebook',
-                );
-              },
-              closeSpeedDialOnPressed: true,
-            ),
-            SpeedDialChild(
-              child: Image.asset('assets/images/socials/instagram.png'),
-              foregroundColor: AppTheme.darkBackground,
-              backgroundColor: AppTheme.darkBackground,
-              onPressed: () {
-                _openUrl(
-                  'https://www.instagram.com/megatronix__msit',
-                  'Instagram',
-                );
-              },
-              closeSpeedDialOnPressed: true,
-            ),
-            SpeedDialChild(
-              child: Image.asset('assets/images/socials/youtube.png'),
-              foregroundColor: AppTheme.darkBackground,
-              backgroundColor: AppTheme.darkBackground,
-              onPressed: () {
-                _openUrl(
-                  'https://www.youtube.com/@megatronixmsit921',
-                  'YouTube',
-                );
-              },
-              closeSpeedDialOnPressed: true,
-            ),
-          ],
-          child: Icon(
-            Icons.link,
-            color: AppTheme.whiteBackground,
-          ),
-        ),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       child: Stack(
         alignment: Alignment.bottomCenter,
@@ -227,6 +161,26 @@ class _ContactPageState extends ConsumerState<ContactPage> {
                       _createQuery();
                     },
                     buttonText: 'Send us your query',
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SocialButton(
+                        url: 'https://www.instagram.com/megatronix__msit',
+                        iconAsset: 'assets/images/socials/instagram.png',
+                        platform: 'Instagram',
+                      ),
+                      SocialButton(
+                        url: 'https://www.facebook.com/groups/142028662672795',
+                        iconAsset: 'assets/images/socials/facebook.png',
+                        platform: 'Facebook',
+                      ),
+                      SocialButton(
+                        url: 'https://www.youtube.com/@megatronixmsit921',
+                        iconAsset: 'assets/images/socials/youtube.png',
+                        platform: 'YouTube',
+                      ),
+                    ],
                   ),
                   SizedBox(height: 90)
                 ],
