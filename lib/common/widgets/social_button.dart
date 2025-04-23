@@ -6,7 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SocialButton extends StatefulWidget {
   final String url;
-  final IconData icon;
+  final IconData? icon;
+  final String? iconAsset;
   final String platform;
   final Color iconColor;
   final Color iconBgColor;
@@ -15,7 +16,8 @@ class SocialButton extends StatefulWidget {
   const SocialButton({
     super.key,
     required this.url,
-    required this.icon,
+    this.icon,
+    this.iconAsset,
     required this.platform,
     this.iconBgColor = AppTheme.primaryBlueAccentColor,
     this.iconColor = AppTheme.whiteBackground,
@@ -54,15 +56,24 @@ class _SocialButtonState extends State<SocialButton> {
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color:
-              widget.isDisabled ? AppTheme.inactiveColor : widget.iconBgColor,
+          color: widget.icon != null
+              ? widget.isDisabled
+                  ? AppTheme.inactiveColor
+                  : widget.iconBgColor
+              : null,
           shape: BoxShape.circle,
         ),
-        child: HugeIcon(
-          icon: widget.icon,
-          color: widget.iconColor,
-          size: widget.iconSize,
-        ),
+        child: widget.icon != null
+            ? HugeIcon(
+                icon: widget.icon!,
+                color: widget.iconColor,
+                size: widget.iconSize,
+              )
+            : Image.asset(
+                widget.iconAsset!,
+                height: 45,
+                width: 45,
+              ),
       ),
     );
   }
