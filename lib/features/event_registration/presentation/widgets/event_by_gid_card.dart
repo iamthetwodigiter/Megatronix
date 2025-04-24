@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:megatronix/features/event_registration/domain/entities/event_registration_details_entity.dart';
 import 'package:megatronix/features/event_registration/presentation/widgets/event_by_gid_card_tiles.dart';
+import 'package:megatronix/features/events/presentation/widgets/call_button.dart';
 import 'package:megatronix/theme/app_theme.dart';
 
 class EventByGidCard extends StatefulWidget {
@@ -27,7 +28,6 @@ class _EventByGidCardState extends State<EventByGidCard> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Container(
-      height: 331,
       width: size.width,
       alignment: Alignment.center,
       padding: EdgeInsets.all(10),
@@ -60,9 +60,17 @@ class _EventByGidCardState extends State<EventByGidCard> {
             ),
             EventByGidCardTiles(
               leading: 'Contacts',
-              title: widget.eventByGidEntity.contacts
-                  .map((e) => e.name)
-                  .join(", "),
+              isContactField: true,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:
+                    widget.eventByGidEntity.contacts.map<Widget>((member) {
+                  return CallButton(
+                    name: member.name,
+                    number: member.contact,
+                  );
+                }).toList(),
+              ),
             ),
             EventByGidCardTiles(
               leading: 'TID',

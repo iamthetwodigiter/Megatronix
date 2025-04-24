@@ -82,24 +82,20 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 title: 'Venue',
                 subtitle: widget.event.venue,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 10,
-                children: [
-                  Text(
-                    'Coordianator Details:',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  CallButton(
-                    name: widget.event.coordinatorDetails[0].split("- ").first,
-                    number: widget.event.coordinatorDetails[0].split("- ").last,
-                  ),
-                  CallButton(
-                    name: widget.event.coordinatorDetails[1].split("- ").first,
-                    number: widget.event.coordinatorDetails[1].split("- ").last,
-                  ),
-                ],
+              Text(
+                'Coordianator Details:',
+                style: TextStyle(fontSize: 18),
               ),
+              Column(
+                spacing: 10,
+                children: widget.event.coordinatorDetails.map<Widget>((member) {
+                  return CallButton(
+                    name: '${member.split("- ").first}: ',
+                    number: member.split("- ").last,
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 5),
               CustomRichtext(
                 title: 'Min Players',
                 subtitle: widget.event.minPlayers.toString(),

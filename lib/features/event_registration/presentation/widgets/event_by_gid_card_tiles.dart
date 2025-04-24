@@ -6,12 +6,14 @@ class EventByGidCardTiles extends StatelessWidget {
   final dynamic title;
   final bool isGID;
   final bool isTrue;
+  final bool isContactField;
   const EventByGidCardTiles({
     super.key,
     required this.leading,
     required this.title,
     this.isGID = false,
     this.isTrue = false,
+    this.isContactField = false,
   });
 
   @override
@@ -40,49 +42,53 @@ class EventByGidCardTiles extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: isGID
-                        ? (title as List).isEmpty
-                            ? Text(
-                                'Click me to Register',
+                    child: isContactField
+                        ? title
+                        : isGID
+                            ? (title as List).isEmpty
+                                ? Text(
+                                    'Click me to Register',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: AppTheme.primaryBlueAccentColor,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  )
+                                : SizedBox(
+                                    height: 50,
+                                    child: ListView.builder(
+                                      itemCount: (title as List).length,
+                                      itemBuilder: (context, index) {
+                                        final gid =
+                                            (title as List).elementAt(index);
+                                        return Text(
+                                          gid,
+                                          style: TextStyle(
+                                            color:
+                                                AppTheme.primaryBlueAccentColor,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w300,
+                                            decoration:
+                                                TextDecoration.underline,
+                                            decorationColor:
+                                                AppTheme.primaryBlueAccentColor,
+                                            decorationThickness: 0.5,
+                                            decorationStyle:
+                                                TextDecorationStyle.double,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                            : Text(
+                                title!.isEmpty ? 'N/A' : title!,
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: AppTheme.primaryBlueAccentColor,
                                   fontWeight: FontWeight.w300,
                                 ),
-                              )
-                            : SizedBox(
-                                height: 50,
-                                child: ListView.builder(
-                                  itemCount: (title as List).length,
-                                  itemBuilder: (context, index) {
-                                    final gid =
-                                        (title as List).elementAt(index);
-                                    return Text(
-                                      gid,
-                                      style: TextStyle(
-                                        color: AppTheme.primaryBlueAccentColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor:
-                                            AppTheme.primaryBlueAccentColor,
-                                        decorationThickness: 0.5,
-                                        decorationStyle:
-                                            TextDecorationStyle.double,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              )
-                        : Text(
-                            title!.isEmpty ? 'N/A' : title!,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                          ),
+                                softWrap: true,
+                                overflow: TextOverflow.visible,
+                              ),
                   ),
                 )
               : Container(

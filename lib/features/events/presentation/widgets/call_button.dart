@@ -31,33 +31,36 @@ class _CallButtonState extends State<CallButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Wrap(
       children: [
         Text(
-          '${widget.name}- ',
+          '• ${widget.name}',
+          style: TextStyle(fontSize: 12),
         ),
         GestureDetector(
           onTap: () {
             _callCoordinator(widget.number);
           },
           child: Container(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
             decoration: BoxDecoration(
               color: AppTheme.darkBackground,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Row(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 5,
               children: [
-                Text(
-                  widget.number,
-                  style: TextStyle(color: AppTheme.whiteBackground),
-                ),
                 Icon(
                   Icons.call,
                   size: 15,
                   color: AppTheme.primaryGreenAccentColor,
+                ),
+                Text(
+                  widget.number,
+                  style: TextStyle(color: AppTheme.whiteBackground),
                 ),
               ],
             ),
