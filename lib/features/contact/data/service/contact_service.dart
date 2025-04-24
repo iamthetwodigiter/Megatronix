@@ -34,6 +34,11 @@ class ContactService {
     if (response.statusCode == 201) {
       return decodedBody;
     } else if (response.statusCode == 400) {
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);

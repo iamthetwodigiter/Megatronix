@@ -25,8 +25,12 @@ class AuthService {
       await _secureStorageService.writeToken(decodedBody['token']);
       return decodedBody['user'];
     } else if (response.statusCode == 400) {
-      throw Exception(
-          (decodedBody['validationErrors'] as Map<String, dynamic>)['message']);
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
+      throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 403) {
@@ -64,6 +68,11 @@ class AuthService {
       }
       return decodedBody['user'];
     } else if (response.statusCode == 400) {
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
@@ -105,6 +114,11 @@ class AuthService {
     if (response.statusCode == 200 && decodedBody['valid'] == true) {
       return decodedBody['user'];
     } else if (response.statusCode == 400) {
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
@@ -179,8 +193,12 @@ class AuthService {
     } else if (response.statusCode == 404) {
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 400) {
-      throw Exception(
-          (decodedBody['validationErrors'] as Map<String, dynamic>)['message']);
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
+      throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 403) {
@@ -209,6 +227,11 @@ class AuthService {
     if (response.statusCode == 200) {
       return decodedBody;
     } else if (response.statusCode == 400) {
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
@@ -244,10 +267,10 @@ class AuthService {
     if (response.statusCode == 200) {
       return decodedBody;
     } else if (response.statusCode == 400) {
-      if ((decodedBody as Map<String, dynamic>)
-          .containsKey('validationErrors')) {
-        throw Exception((decodedBody['validationErrors']
-            as Map<String, dynamic>)['message']);
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
       }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
@@ -283,10 +306,10 @@ class AuthService {
     if (response.statusCode == 200) {
       return decodedBody;
     } else if (response.statusCode == 400) {
-      if ((decodedBody as Map<String, dynamic>)
-          .containsKey('validationErrors')) {
-        throw Exception((decodedBody['validationErrors']
-            as Map<String, dynamic>)['message']);
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
       }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
@@ -324,10 +347,10 @@ class AuthService {
     if (response.statusCode == 200) {
       return decodedBody;
     } else if (response.statusCode == 400) {
-      if ((decodedBody as Map<String, dynamic>)
-          .containsKey('validationErrors')) {
-        throw Exception((decodedBody['validationErrors']
-            as Map<String, dynamic>)['message']);
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
       }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
@@ -361,6 +384,11 @@ class AuthService {
     if (response.statusCode == 200) {
       return decodedBody;
     } else if (response.statusCode == 400) {
+      if (decodedBody.containsKey('validationErrors')) {
+        throw Exception((decodedBody['validationErrors'] as List<dynamic>)
+            .map((errors) => errors['message'])
+            .join("\n"));
+      }
       throw Exception(decodedBody['message']);
     } else if (response.statusCode == 401) {
       throw Exception(decodedBody['message']);
