@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:megatronix/common/pages/dev_easter_egg.dart';
 import 'package:megatronix/common/pages/settings_page.dart';
 import 'package:megatronix/features/profile/presentation/pages/user_profile_page.dart';
 
@@ -74,17 +75,25 @@ class _CustomScaffoldState extends State<CustomScaffold>
         ),
         centerTitle: true,
         leading: widget.isMainPage
-            ? Align(
+            ? Container(
                 alignment: Alignment.bottomCenter,
-                child: IconButton(
-                  onPressed: () {
+                padding: EdgeInsets.only(bottom: 8),
+                child: GestureDetector(
+                  onLongPress: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DevEasterEgg(),
+                      ),
+                    );
+                  },
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => SettingsPage(),
                       ),
                     );
                   },
-                  icon: Icon(
+                  child: Icon(
                     Icons.settings,
                   ),
                 ),
