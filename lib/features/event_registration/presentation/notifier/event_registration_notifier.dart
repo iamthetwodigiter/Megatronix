@@ -47,47 +47,68 @@ class EventRegistrationNotifier extends StateNotifier<EventRegistrationState> {
 
   Future<void> registerTeam(int eventID, String teamName, List<String> gidList,
       List<Map<String, dynamic>> contact) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = EventRegistrationState(isLoading: true, error: null);
     try {
       final eventsRegistration = await _eventRegistrationRepository
           .registerTeam(eventID, teamName, gidList, contact);
-      state = state.copyWith(
+      state = EventRegistrationState(
         isLoading: false,
         eventRegistrations: eventsRegistration,
-        error: null
+        error: null,
       );
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = EventRegistrationState(
+        isLoading: false,
+        eventByGID: null,
+        eventRegistrationList: null,
+        eventRegistrations: null,
+        comboRegistrations: null,
+        error: e.toString(),
+      );
     }
   }
 
   Future<void> registerCombo(int comboID, String teamName,
       Map<String, dynamic> gidList, List<Map<String, dynamic>> contact) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = EventRegistrationState(isLoading: true, error: null);
     try {
       final comboRegistrations = await _eventRegistrationRepository
           .registerCombo(comboID, teamName, gidList, contact);
-      state = state.copyWith(
+      state = EventRegistrationState(
         isLoading: false,
         comboRegistrations: comboRegistrations,
         error: null,
       );
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = EventRegistrationState(
+        isLoading: false,
+        eventByGID: null,
+        eventRegistrationList: null,
+        eventRegistrations: null,
+        comboRegistrations: null,
+        error: e.toString(),
+      );
     }
   }
 
   Future<void> getTeamsByGID(String gid) async {
-    state = state.copyWith(isLoading: true, error: null);
+    state = EventRegistrationState(isLoading: true, error: null);
     try {
       final eventByGID = await _eventRegistrationRepository.getTeamsByGID(gid);
-      state = state.copyWith(
+      state = EventRegistrationState(
         isLoading: false,
         eventByGID: eventByGID,
         error: null,
       );
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = EventRegistrationState(
+        isLoading: false,
+        eventByGID: null,
+        eventRegistrationList: null,
+        eventRegistrations: null,
+        comboRegistrations: null,
+        error: e.toString(),
+      );
     }
   }
 }

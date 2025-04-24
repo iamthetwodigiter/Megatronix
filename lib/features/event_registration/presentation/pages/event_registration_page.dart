@@ -181,7 +181,7 @@ class _EventRegistrationPageState extends ConsumerState<EventRegistrationPage> {
         return;
       }
 
-      if (current.error != null) {
+      if (current.eventRegistrations == null || current.error != null && context.mounted) {
         AppErrorHandler.handleError(
           context,
           'Error',

@@ -214,7 +214,7 @@ class _ComboRegistrationPageState extends ConsumerState<ComboRegistrationPage> {
           );
           return;
         }
-        if (current.error != null && context.mounted) {
+        if (current.comboRegistrations == null || current.error != null && context.mounted) {
           AppErrorHandler.handleError(
             context,
             'Error',
