@@ -132,8 +132,9 @@ class _EventByGidPageState extends ConsumerState<EventByGidPage> {
       );
     }
 
-    return Scaffold(
-      body: Center(
+    return CustomScaffold(
+      title: 'Registered Events',
+      child: Center(
         child: Text(
           'Failed to load registered events list',
           style: TextStyle(

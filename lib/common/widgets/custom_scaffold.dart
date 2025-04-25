@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:megatronix/common/pages/dev_easter_egg.dart';
 import 'package:megatronix/common/pages/settings_page.dart';
+import 'package:megatronix/common/widgets/blinking_stars.dart';
 import 'package:megatronix/features/profile/presentation/pages/user_profile_page.dart';
 
 class CustomScaffold extends StatefulWidget {
@@ -127,21 +128,20 @@ class _CustomScaffoldState extends State<CustomScaffold>
       body: Stack(
         children: [
           enableAnimation
-              ? Opacity(
-                  opacity: widget.customOpacity,
-                  child: RotatedBox(
-                    quarterTurns: -1,
-                    child: LottieBuilder.asset(
-                      (widget.customLottie != null &&
-                              widget.customLottie == true)
-                          ? 'assets/animations/stars.json'
-                          : 'assets/animations/background.json',
-                      height: size.width,
-                      width: size.height,
-                      frameRate: FrameRate(60),
-                      fit: BoxFit.cover,
-                    ),
-                  ))
+              ? (widget.customLottie != null && widget.customLottie == true)
+                  ? StarryBackground()
+                  : Opacity(
+                      opacity: widget.customOpacity,
+                      child: RotatedBox(
+                        quarterTurns: -1,
+                        child: LottieBuilder.asset(
+                          'assets/animations/background.json',
+                          height: size.width,
+                          width: size.height,
+                          frameRate: FrameRate(60),
+                          fit: BoxFit.cover,
+                        ),
+                      ))
               : Opacity(
                   opacity: widget.customOpacity,
                   child: Image.asset(

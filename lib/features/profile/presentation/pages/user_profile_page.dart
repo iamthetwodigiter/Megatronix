@@ -102,7 +102,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
         authState.isLoading ||
         profileState.isLoading) {
       return CustomScaffold(
-        title: 'User Profile',
+        title: 'Profile',
         child: Center(child: LoadingWidget()),
       );
     }
@@ -110,7 +110,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
     if (authState.user == null && context.mounted) {
       WidgetsBinding.instance.addPostFrameCallback((_) {});
       return CustomScaffold(
-        title: 'User Profile',
+        title: 'Profile',
         isDisabled: true,
         child: Center(
           child: Column(
@@ -145,8 +145,9 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
     }
 
     if (profileState.profile == null) {
-      return Scaffold(
-        body: Center(
+      return CustomScaffold(
+        title: 'Profile',
+        child: Center(
           child: Text(
             'Failed to load Profile',
           ),
@@ -294,8 +295,9 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
       );
     }
 
-    return Scaffold(
-      body: Center(
+    return CustomScaffold(
+      title: 'Profile',
+      child: Center(
         child: Text('Failed to load profile'),
       ),
     );
