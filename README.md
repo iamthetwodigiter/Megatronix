@@ -7,10 +7,26 @@ A robust Flutter-based application implementing Clean Architecture principles, d
 ![Dart](https://img.shields.io/badge/Dart-3.6.1-blue)
 ![Platforms](https://img.shields.io/badge/Platforms-Android%20%7C%20iOS%20%7C%20Web-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Among Us](https://img.shields.io/badge/Among%20Us-Theme%20Available-red)
 
 ## 📱 Overview
 
 Megatronix is a comprehensive cross-platform application designed to streamline tech club operations, enhance member engagement, and simplify event management. The app provides a unified platform for event registration, team coordination, profile management, and communication, accessible on both mobile devices and web browsers.
+
+### 🎮 Among Us Edition
+
+**Check out our special "amongus" branch for an immersive experience!**
+
+The "amongus" branch features a complete UI overhaul inspired by the popular game Among Us:
+- Custom Among Us-inspired font throughout the application
+- Crewmate mascots integrated into the user interface
+- Game-themed color schemes and visual elements
+- Playful animations reminiscent of the Among Us gameplay
+
+To experience the Among Us version, switch to the dedicated branch:
+```bash
+git checkout amongus
+```
 
 ## 🏗️ Architecture
 
@@ -197,6 +213,7 @@ final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref
 | **Analytics** | Firebase Analytics (planned) |
 | **Testing** | Unit Tests, Widget Tests, Integration Tests |
 | **Web Deployment** | Vercel Hosting |
+| **Theme Variants** | Standard, Among Us |
 
 ### Web Implementation
 - **Responsive layouts** using Flutter's adaptive widgets and custom breakpoints
@@ -304,6 +321,13 @@ flutter run
 flutter run -d chrome
 ```
 
+5. For the Among Us themed version:
+```bash
+git checkout amongus
+flutter pub get
+flutter run
+```
+
 ### Web Deployment
 
 1. Build the web application:
@@ -329,9 +353,11 @@ class Config {
 - **Phase 3**: Team collaboration features and media galleries ✅
 - **Phase 4**: Web platform support and responsive design ✅
 - **Phase 5**: Onboarding experience and user guidance system ✅
-- **Phase 6**: Analytics integration and performance optimization 🔄
-- **Phase 7**: Payment gateway integration and e-commerce features 🔄
-- **Phase 8**: Advanced web features (offline support, push notifications) 🔄
+- **Phase 6**: Among Us theme implementation on dedicated branch ✅
+- **Phase 7**: Analytics integration and performance optimization 🔄
+- **Phase 8**: Payment gateway integration and e-commerce features 🔄
+- **Phase 9**: Advanced web features (offline support, push notifications) 🔄
+- **Phase 10**: Additional themed variants and customization options 🔄
 
 ## 🧪 Testing Strategy
 
@@ -340,6 +366,7 @@ class Config {
 - **Integration Tests**: End-to-end flow validation
 - **Cross-platform Testing**: Validation across mobile and web platforms
 - **Browser Compatibility Testing**: Testing across major web browsers
+- **Theme Compatibility Testing**: Ensuring functionality across theme variants
 
 ## 👥 Contributors
 
