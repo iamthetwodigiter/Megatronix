@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:megatronix/common/widgets/custom_scaffold.dart';
 import 'package:megatronix/core/errors/app_error_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:async';
 
 class DevEasterEgg extends StatefulWidget {
   const DevEasterEgg({super.key});
@@ -14,7 +13,6 @@ class DevEasterEgg extends StatefulWidget {
 class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  bool _showConfetti = false;
 
   @override
   void initState() {
@@ -27,13 +25,6 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
       CurvedAnimation(parent: _controller, curve: Curves.elasticInOut),
     );
     _controller.repeat(reverse: true);
-    
-    // Show confetti after a delay
-    Timer(const Duration(milliseconds: 500), () {
-      setState(() {
-        _showConfetti = true;
-      });
-    });
   }
 
   @override
@@ -65,10 +56,9 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
       customLottie: true,
       child: Stack(
         children: [
-          if (_showConfetti) _buildConfetti(),
           Center(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.7),
@@ -92,7 +82,7 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
                   const Text(
                     '🎉 Congratulations! 🎉',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.amber,
                     ),
@@ -101,7 +91,7 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
                   Text(
                     'You\'ve discovered the hidden Easter egg!',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 17,
                       color: Colors.white.withOpacity(0.9),
                     ),
                     textAlign: TextAlign.center,
@@ -135,9 +125,9 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
                   ),
                   const SizedBox(height: 24),
                   const Text(
-                    'Meet the creative mind behind this app',
+                    'Just a dev who spent sleepless nights bringing this app to life',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontStyle: FontStyle.italic,
                       color: Colors.white70,
                     ),
@@ -189,7 +179,7 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
                   const Text(
                     'Tap on the image or button to visit my GitHub profile',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.white70,
                     ),
                     textAlign: TextAlign.center,
@@ -200,74 +190,6 @@ class _DevEasterEggState extends State<DevEasterEgg> with SingleTickerProviderSt
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildConfetti() {
-    return IgnorePointer(
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: CustomPaint(
-          painter: ConfettiPainter(),
-        ),
-      ),
-    );
-  }
-}
-
-class ConfettiPainter extends CustomPainter {
-  final List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
-    Colors.pink,
-    Colors.teal,
-    Colors.amber,
-  ];
-  
-  final List<Confetti> confetti = List.generate(
-    50,
-    (index) => Confetti.random(),
-  );
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    for (var piece in confetti) {
-      final paint = Paint()..color = colors[piece.colorIndex % colors.length];
-      canvas.drawRect(
-        Rect.fromLTWH(
-          piece.x * size.width,
-          piece.y * size.height,
-          piece.size,
-          piece.size,
-        ),
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
-class Confetti {
-  final double x;
-  final double y;
-  final double size;
-  final int colorIndex;
-
-  Confetti(this.x, this.y, this.size, this.colorIndex);
-
-  factory Confetti.random() {
-    return Confetti(
-      (DateTime.now().millisecondsSinceEpoch % 100) / 100,
-      (DateTime.now().microsecondsSinceEpoch % 100) / 100,
-      (DateTime.now().millisecondsSinceEpoch % 5) / 10 + 2,
-      DateTime.now().millisecondsSinceEpoch % 9,
     );
   }
 }
