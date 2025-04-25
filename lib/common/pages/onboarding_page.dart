@@ -14,7 +14,7 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  Box preferences = Hive.box('preferences');
+  final Box _preferences = Hive.box('preferences');
   bool _enableAnimation = true;
 
   @override
@@ -30,7 +30,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
       onFinish: () {
-        preferences.put('firstTime', false);
+        _preferences.put('firstTime', false);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const LandingPage(),
@@ -92,7 +92,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       setState(
                         () {
                           _enableAnimation = value;
-                          preferences.put('enableAnimation', value);
+                          _preferences.put('enableAnimation', value);
                         },
                       );
                     },

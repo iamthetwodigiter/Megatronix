@@ -47,9 +47,12 @@ class _ParidhiState extends ConsumerState<Megatronix> {
     if (!preferences.keys.contains('enableAnimation')) {
       preferences.put('enableAnimation', true);
     }
+    if (!preferences.keys.contains('starryAnimation')) {
+      preferences.put('starryAnimation', true);
+    }
     if (!preferences.keys.contains('firstTime')) {
       preferences.put('firstTime', true);
-    } else if(preferences.get('firstTime') == true) {
+    } else if (preferences.get('firstTime') == true) {
       preferences.put('firstTime', false);
     }
   }

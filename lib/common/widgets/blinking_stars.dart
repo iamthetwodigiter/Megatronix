@@ -1,7 +1,6 @@
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 class StarryBackground extends StatefulWidget {
   final Color backgroundColor;
   final int numberOfFixedStars;
@@ -9,15 +8,15 @@ class StarryBackground extends StatefulWidget {
   final Widget? child;
 
   const StarryBackground({
-    Key? key,
-    this.backgroundColor = const Color(0xFF0A0E21),
+    super.key,
+    this.backgroundColor = const Color.fromARGB(255, 0, 0, 0),
     this.numberOfFixedStars = 100,
     this.numberOfBlinkingStars = 40,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
-  _StarryBackgroundState createState() => _StarryBackgroundState();
+  State<StarryBackground> createState() => _StarryBackgroundState();
 }
 
 class _StarryBackgroundState extends State<StarryBackground> {
@@ -72,11 +71,11 @@ class FixedStar extends StatelessWidget {
   final double size;
 
   const FixedStar({
-    Key? key,
+    super.key,
     required this.top,
     required this.left,
     required this.size,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +101,12 @@ class BlinkingStar extends StatefulWidget {
   final Duration blinkDuration;
 
   const BlinkingStar({
-    Key? key,
+    super.key,
     required this.top,
     required this.left,
     required this.size,
     required this.blinkDuration,
-  }) : super(key: key);
+  });
 
   @override
   State<BlinkingStar> createState() => _BlinkingStarState();

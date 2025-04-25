@@ -17,41 +17,81 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     final bool enableAnimation =
         _preferences.get('enableAnimation', defaultValue: true) ?? true;
+    final bool starryAnimation =
+        _preferences.get('starryAnimation', defaultValue: true) ?? true;
     return CustomScaffold(
       title: 'Settings',
-      child: SizedBox(
-        height: 200,
-        child: CupertinoListSection.insetGrouped(
-          backgroundColor: AppTheme.transparentColor,
-          footer: Text(
-            'Enabling the animation will consume more battery and resources. For devices with limited resources, it is recommended to disable the animation.',
-            style: TextStyle(
-              fontSize: 12,
-              fontFamily: 'Poppins',
-              color: AppTheme.whiteBackground,
-            ),
-          ),
-          children: [
-            CupertinoListTile(
-              backgroundColor: AppTheme.darkBackground,
-              title: Text(
-                'Enable Animation',
+      child: Column(
+        children: [
+          SizedBox(
+            height: 140,
+            child: CupertinoListSection.insetGrouped(
+              backgroundColor: AppTheme.transparentColor,
+              footer: Text(
+                'Enabling the animation will consume more battery and resources. For devices with limited resources, it is recommended to disable the animation.',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 12,
+                  fontFamily: 'Poppins',
                   color: AppTheme.whiteBackground,
                 ),
               ),
-              trailing: CupertinoSwitch(
-                value: enableAnimation,
-                onChanged: (value) {
-                  setState(() {
-                    _preferences.put('enableAnimation', value);
-                  });
-                },
-              ),
+              children: [
+                CupertinoListTile(
+                  backgroundColor: AppTheme.darkBackground,
+                  title: Text(
+                    'Enable Animation',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: AppTheme.whiteBackground,
+                    ),
+                  ),
+                  trailing: CupertinoSwitch(
+                    value: enableAnimation,
+                    onChanged: (value) {
+                      setState(() {
+                        _preferences.put('enableAnimation', value);
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 200,
+            child: CupertinoListSection.insetGrouped(
+              backgroundColor: AppTheme.transparentColor,
+              footer: Text(
+                'Enabling the starry animation might lag a bit. Don\'t worry you can always change it here.',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: 'Poppins',
+                  color: AppTheme.whiteBackground,
+                ),
+              ),
+              children: [
+                CupertinoListTile(
+                  backgroundColor: AppTheme.darkBackground,
+                  title: Text(
+                    'Enable Starry Animation',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: AppTheme.whiteBackground,
+                    ),
+                  ),
+                  trailing: CupertinoSwitch(
+                    value: starryAnimation,
+                    onChanged: (value) {
+                      setState(() {
+                        _preferences.put('starryAnimation', value);
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

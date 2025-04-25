@@ -60,6 +60,8 @@ class _CustomScaffoldState extends State<CustomScaffold>
     final size = MediaQuery.sizeOf(context);
     final bool enableAnimation =
         _preferences.get('enableAnimation', defaultValue: true) ?? true;
+    final starryAnimation =
+        _preferences.get('starryAnimation', defaultValue: true);
     return Scaffold(
       appBar: AppBar(
         excludeHeaderSemantics: true,
@@ -129,7 +131,20 @@ class _CustomScaffoldState extends State<CustomScaffold>
         children: [
           enableAnimation
               ? (widget.customLottie != null && widget.customLottie == true)
-                  ? StarryBackground()
+                  ? starryAnimation
+                      ? Opacity(
+                          opacity: widget.customOpacity,
+                          child: RotatedBox(
+                            quarterTurns: -1,
+                            child: LottieBuilder.asset(
+                              'assets/animations/stars.json',
+                              height: size.width,
+                              width: size.height,
+                              frameRate: FrameRate(60),
+                              fit: BoxFit.cover,
+                            ),
+                          ))
+                      : StarryBackground()
                   : Opacity(
                       opacity: widget.customOpacity,
                       child: RotatedBox(
