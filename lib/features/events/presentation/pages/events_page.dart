@@ -138,6 +138,14 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                       getPosterUrlForDomain(state.domainPosters, 'GAMING'),
                 ),
               ),
+              BounceInDown(
+                delay: Duration(milliseconds: 700),
+                child: DomainEventsCards(
+                  domain: 'EXCLUSIVE',
+                  posterUrl:
+                      getPosterUrlForDomain(state.domainPosters, 'EXCLUSIVE'),
+                ),
+              ),
               SizedBox(height: 45),
             ],
           ),
