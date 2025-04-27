@@ -132,7 +132,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               pause: Duration(seconds: 2),
               animatedTexts: [
                 TypewriterAnimatedText(
-                  "Megatronix presents Paridhi: Eastern Kolkata's biggest tech fest at MSIT. Featuring competitions, workshops and tech showcases for all tech enthusiasts.",
+                  "Megatronix presents Paridhi: Eastern India's biggest tech fest at MSIT. Featuring competitions, workshops and tech showcases for all tech enthusiasts.",
                   textStyle: TextStyle(
                     fontFamily: 'DaggerSquare',
                     fontSize: 18,
